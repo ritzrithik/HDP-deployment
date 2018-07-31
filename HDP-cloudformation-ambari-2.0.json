@@ -19,7 +19,7 @@
       "Description" : "Master Node",
       "Type" : "String",
       "Default" : "m1.medium",
-      "AllowedValues" : [ "t1.micro","m1.small","m1.medium","m1.large","m1.xlarge","m2.xlarge","m2.2xlarge","m2.4xlarge","m3.xlarge","m3.2xlarge","c1.medium","c1.xlarge","cc1.4xlarge","cc2.8xlarge","cg1.4xlarge"],
+      "AllowedValues" : [ "t1.micro","m1.small","m1.medium","m1.large","m1.xlarge","m2.xlarge","m2.2xlarge","m2.4xlarge","m3.xlarge","m3.2xlarge","m4.4xlarge","c1.medium","c1.xlarge","cc1.4xlarge","cc2.8xlarge","cg1.4xlarge"],
       "ConstraintDescription" : "must be a valid EC2 instance type."
     },
 
@@ -27,7 +27,7 @@
       "Description" : "Data Node",
       "Type" : "String",
       "Default" : "m1.medium",
-      "AllowedValues" : [ "t1.micro","m1.small","m1.medium","m1.large","m1.xlarge","m2.xlarge","m2.2xlarge","m2.4xlarge","m3.xlarge","m3.2xlarge","c1.medium","c1.xlarge","cc1.4xlarge","cc2.8xlarge","cg1.4xlarge"],
+      "AllowedValues" : [ "t1.micro","m1.small","m1.medium","m1.large","m1.xlarge","m2.xlarge","m2.2xlarge","m2.4xlarge","m3.xlarge","m3.2xlarge","m4.4xlarge","c1.medium","c1.xlarge","cc1.4xlarge","cc2.8xlarge","cg1.4xlarge"],
       "ConstraintDescription" : "must be a valid EC2 instance type."
     },
     "SSHLocation" : {
@@ -63,6 +63,7 @@
       "m2.4xlarge"  : { "Arch" : "64" },
       "m3.xlarge"   : { "Arch" : "64" },
       "m3.2xlarge"  : { "Arch" : "64" },
+      "m4.4xlarge"  : { "Arch" : "64" },
       "c1.medium"   : { "Arch" : "64" },
       "c1.xlarge"   : { "Arch" : "64" },
       "cc1.4xlarge" : { "Arch" : "64HVM" },
@@ -96,7 +97,7 @@
           "#!/bin/bash -v\n",
 
           "# Setup correct file ownership\n",
-          "wget http://public-repo-1.hortonworks.com/ambari/centos6/1.x/updates/1.6.1/ambari.repo -O /etc/yum.repos.d/ambari.repo\n",
+          "wget -nv http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.2.2/ambari.repo -O /etc/yum.repos.d/ambari.repo\n",
       
           "yum install -y ambari-server\n",
 
@@ -197,6 +198,10 @@
           {"IpProtocol" : "tcp", "FromPort" : "8080", "ToPort" : "8080", "CidrIp" : "0.0.0.0/0"},
           {"IpProtocol" : "tcp", "FromPort" : "8983", "ToPort" : "8983", "CidrIp" : "0.0.0.0/0"},
           {"IpProtocol" : "tcp", "FromPort" : "8020", "ToPort" : "8020", "CidrIp" : "0.0.0.0/0"},
+          {"IpProtocol" : "tcp", "FromPort" : "8088", "ToPort" : "8088", "CidrIp" : "0.0.0.0/0"},
+          {"IpProtocol" : "tcp", "FromPort" : "8082", "ToPort" : "8082", "CidrIp" : "0.0.0.0/0"},
+          {"IpProtocol" : "tcp", "FromPort" : "9090", "ToPort" : "9090", "CidrIp" : "0.0.0.0/0"},
+          {"IpProtocol" : "tcp", "FromPort" : "9005", "ToPort" : "9005", "CidrIp" : "0.0.0.0/0"},
           {"IpProtocol" : "tcp", "FromPort" : "50070", "ToPort" : "50070", "CidrIp" : "0.0.0.0/0"},
           {"IpProtocol" : "tcp", "FromPort" : "50090", "ToPort" : "50090", "CidrIp" : "0.0.0.0/0"},
           {"IpProtocol" : "tcp", "FromPort" : "50105", "ToPort" : "50105", "CidrIp" : "0.0.0.0/0"},
